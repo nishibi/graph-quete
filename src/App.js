@@ -67,12 +67,28 @@ function FiveLaunches() {
   if (error) return <p>Error :(</p>;
 
   return (
-    <ul>
+    <div>
       {data.launches.map((value, key) => {
-        return ();
+        let successMessage = "";
+        if (value.launch_success) {
+          successMessage = "Success !";
+        } else {
+          successMessage = "Failed :(";
+        }
+        return (
+          <div>
+            <h2>{value.rocket.rocket_name}</h2>
+            <h3>
+              The launch from {value.launch_date_utc} is {successMessage}
+            </h3>
+            <p>{value.details}</p>
+            <p>
+              View the launch <a href={value.links.video_link}>HERE</a>
+            </p>
+          </div>
+        );
       })}
-      ;
-    </ul>
+    </div>
   );
 }
 
